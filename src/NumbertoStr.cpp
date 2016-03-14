@@ -18,8 +18,48 @@ NOTES: Don't create new string.
 */
 
 #include <stdio.h>
+void number_to_str(float number, char *str, int afterdecimal)
 
-
-void number_to_str(float number, char *str,int afterdecimal){
-	
+{
+	int num, i = 0,j, k = 1, l = 0, ad;
+	ad = afterdecimal;
+	if (afterdecimal == 0)
+	{
+		ad = -1;
+	}
+	if (number<0)
+	{
+		str[0] = '-';
+		i++;
+		l++;
+		number = number*-1;
+	}
+	num = number;
+	while (num)
+	{
+		i++;
+		num = num / 10;
+	}
+	{
+		while (afterdecimal>0)
+		{
+			num = number * 10;
+			number = number * 10;
+			k++;
+			afterdecimal--;
+		}
+	}
+	num = number;
+	for (j = i + ad; j >= l; j--)
+	{
+		if (j == i)
+		{
+			str[j] = '.';
+		}
+		else
+		{
+			str[j] = num % 10 + '0';
+			num = num / 10;
+		}
+	}
 }
